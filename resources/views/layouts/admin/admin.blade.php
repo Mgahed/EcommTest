@@ -33,9 +33,7 @@
         <div class="container-full">
 
             <!-- Main content -->
-            <section class="content">
-                @yield('admin')
-            </section>
+            @yield('admin')
             <!-- /.content -->
         </div>
     </div>
@@ -59,6 +57,10 @@
 <!-- Sunny Admin App -->
 <script src="{{asset('dashboard/js/template.js')}}"></script>
 <script src="{{asset('dashboard/js/pages/dashboard.js')}}"></script>
+
+{{-- data table --}}
+<script src="{{asset('assets/vendor_components/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('dashboard/js/pages/data-table.js')}}"></script>
 
 
 </body>

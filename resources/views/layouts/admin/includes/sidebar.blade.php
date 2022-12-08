@@ -17,8 +17,8 @@
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
-            <li class="{{\Request::route()->getName() == 'admin.index' ? 'active' : ''}}">
-                <a href="{{route('admin.index')}}">
+            <li class="{{\Request::route()->getName() == 'admin.brands.index' ? 'active' : ''}}">
+                <a href="{{route('admin.brands.index')}}">
                     <i data-feather="pie-chart"></i>
                     <span>Brands</span>
                 </a>
