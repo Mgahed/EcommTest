@@ -1,5 +1,7 @@
 @extends('layouts.admin.admin')
 @section('admin')
+    @include('admin.alert.alert')
+
     <div class="content-header">
         <div class="d-flex align-items-center">
             <div class="mr-auto">

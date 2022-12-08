@@ -24,7 +24,7 @@ php artisan db:seed
 ```Admin: admin@admin.com```
 ```Password: password```
 
-```User: jeanie.sipes@example.com```
+```Client: john.doe@example.com```
 ```Password: password```
 
 ## Demo:

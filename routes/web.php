@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin']], function () {
         Route::post('/store', 'store')->name('admin.brands.store');
         Route::get('/edit/{id}', 'edit')->name('admin.brands.edit');
         Route::post('/update/{id}', 'update')->name('admin.brands.update');
-        Route::delete('/delete/{id}', 'delete')->name('admin.brands.delete');
+        Route::get('/delete/{id}', 'delete')->name('admin.brands.delete');
     });
 
     // products

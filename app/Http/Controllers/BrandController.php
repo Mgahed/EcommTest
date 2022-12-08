@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+    public function rules()
+    {
+        return [
+            'name' => 'required|min:3|max:255',
+        ];
+    }
+
     public function index()
     {
         if (!Cache::has('brands')) {
@@ -22,5 +29,49 @@ class BrandController extends Controller
     public function create()
     {
         return view('admin.brands.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate($this->rules());
+        $brand = Brand::create([
+            'name' => $request->name,
+        ]);
+        if ($brand) {
+            Cache::forget('brands');
+            return redirect()->route('admin.brands.index')->with('success', 'Brand created successfully');
+        }
+        return redirect()->back()->with('error', 'Brand created failed');
+    }
+
+    public function edit($id)
+    {
+        $brand = Brand::find($id);
+        return view('admin.brands.edit', compact('brand'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate($this->rules());
+        $brand = Brand::find($id);
+        $update = $brand->update([
+            'name' => $request->name,
+        ]);
+        if ($update) {
+            Cache::forget('brands');
+            return redirect()->route('admin.brands.index')->with('success', 'Brand updated successfully');
+        }
+        return redirect()->back()->with('error', 'Brand updated failed');
+    }
+
+    public function delete($id)
+    {
+        $brand = Brand::find($id);
+        $delete = $brand->delete();
+        if ($delete) {
+            Cache::forget('brands');
+            return redirect()->route('admin.brands.index')->with('success', 'Brand deleted successfully');
+        }
+        return redirect()->back()->with('error', 'Brand deleted failed');
     }
 }
