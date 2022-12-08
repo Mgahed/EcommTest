@@ -61,7 +61,6 @@
 {{-- data table --}}
 <script src="{{asset('assets/vendor_components/datatable/datatables.min.js')}}"></script>
 <script src="{{asset('dashboard/js/pages/data-table.js')}}"></script>
-
-
+@stack('bottom-scripts')
 </body>
 </html>

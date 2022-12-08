@@ -24,6 +24,13 @@
                 </a>
             </li>
 
+            <li class="{{\Request::route()->getName() == 'admin.products.index' ? 'active' : ''}}">
+                <a href="{{route('admin.products.index')}}">
+                    <i data-feather="pie-chart"></i>
+                    <span>Products</span>
+                </a>
+            </li>
+
             {{--<li class="treeview">
                 <a href="#">
                     <i data-feather="message-circle"></i>
