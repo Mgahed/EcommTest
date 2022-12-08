@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            // status: 0 - pending, 1 - paid, 2 - cancelled
+            $table->tinyInteger('status')->default(0);
             // user
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
