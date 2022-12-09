@@ -99,4 +99,21 @@ class ProductController extends Controller
         }
         return redirect()->back()->with('error', 'Product deleted failed.');
     }
+
+    /*--- front ---*/
+
+    public function products()
+    {
+        $products = Product::paginate(40, ['*'], 'products')->onEachSide(1);
+        return view('front.products.products', compact('products'));
+    }
+
+    public function details($id)
+    {
+        $product = Product::with('brand')->findOrFail($id);
+
+        // random related products
+        $relatedProducts = Product::where('id', '!=', $id)->where('brand_id',$product->brand_id)->inRandomOrder()->limit(4)->get();
+        return view('front.products.details', compact('product', 'relatedProducts'));
+    }
 }

@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-lg-6">
-                    <!-- PRODUCT SLIDER-->
+                    <!-- BRAND SLIDER-->
                     <div class="row m-sm-0">
                         <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
                             <div class="swiper product-slider-thumbs">

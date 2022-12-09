@@ -8,7 +8,7 @@
                         <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'home' ? 'active' : ''}}" href="{{route('home')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'products' ? 'active' : ''}}" href="shop.html">Products</a>
+                        <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'products.index' || \Request::route()->getName() == 'products.details' ? 'active' : ''}}" href="{{route('products.index')}}">Products</a>
                     </li>
                     <li class="nav-item">
                         <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'brands.index' || \Request::route()->getName() == 'brands.details' ? 'active' : ''}}" href="{{route('brands.index')}}">Brands</a>

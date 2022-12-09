@@ -24,6 +24,11 @@ Route::group(['prefix' => 'brands', 'controller' => BrandController::class], fun
     Route::get('details/{id}', 'details')->name('brands.details');
 });
 
+Route::group(['prefix' => 'products', 'controller' => ProductController::class], function () {
+    Route::get('/', 'products')->name('products.index');
+    Route::get('details/{id}', 'details')->name('products.details');
+});
+
 Auth::routes();
 
 /*----- admin -----*/
