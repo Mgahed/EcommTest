@@ -64,8 +64,12 @@
                         </tr>
                         </tfoot>
                     </table>
+                    {{--{!! $dataTable->table() !!}--}}
                 </div>
             </div>
         </div>
     </section>
 @endsection
+{{--@push('bottom-scripts')
+    {!! $dataTable->scripts() !!}
+@endpush--}}
