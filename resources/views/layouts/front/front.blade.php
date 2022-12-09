@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{{asset('front/css/custom.css')}}">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{asset('front/img/favicon.png')}}">
+
+    <link rel="stylesheet" href="{{asset('packs/toastr/toastr.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="page-holder">
@@ -107,6 +110,31 @@
     <script src="{{asset('front/vendor/swiper/swiper-bundle.min.js')}}"></script>
     <script src="{{asset('front/vendor/choices.js/public/assets/scripts/choices.min.js')}}"></script>
     <script src="{{asset('front/js/front.js')}}"></script>
+    {{-- toastr --}}
+    <script src="{{asset('packs/toastr/toastr.js')}}"></script>
+    <script>
+        let success = toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        @if(Session::has('success'))
+            toastr.success("{{Session::get('success')}}")
+        @endif
+    </script>
+    {{-- toastr --}}
     <script>
         // ------------------------------------------------------- //
         //   Inject SVG Sprite -
