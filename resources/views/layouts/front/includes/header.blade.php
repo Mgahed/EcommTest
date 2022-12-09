@@ -1,17 +1,17 @@
 <header class="header bg-white">
     <div class="container px-lg-3">
-        <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0"><a class="navbar-brand" href="index.html"><span class="fw-bold text-uppercase text-dark">{{env('APP_NAME')}}</span></a>
+        <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0"><a class="navbar-brand" href="{{route('home')}}"><span class="fw-bold text-uppercase text-dark">{{env('APP_NAME')}}</span></a>
             <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'home' ? 'active' : ''}}" href="index.html">Home</a>
+                        <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'home' ? 'active' : ''}}" href="{{route('home')}}">Home</a>
                     </li>
                     <li class="nav-item">
                         <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'products' ? 'active' : ''}}" href="shop.html">Products</a>
                     </li>
                     <li class="nav-item">
-                        <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'brands' ? 'active' : ''}}" href="detail.html">Brands</a>
+                        <!-- Link--><a class="nav-link {{\Request::route()->getName() == 'brands.index' || \Request::route()->getName() == 'brands.details' ? 'active' : ''}}" href="{{route('brands.index')}}">Brands</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">

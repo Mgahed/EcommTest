@@ -74,4 +74,19 @@ class BrandController extends Controller
         }
         return redirect()->back()->with('error', 'Brand deleted failed');
     }
+
+
+    /*--- front ---*/
+
+    public function brands()
+    {
+        $brands = Brand::paginate(20, ['*'], 'brands')->onEachSide(1);
+        return view('front.brands.brands', compact('brands'));
+    }
+
+    public function details($id)
+    {
+        $brand = Brand::findOrFail($id);
+        return view('front.brands.details', compact('brand'));
+    }
 }

@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::group(['prefix' => 'brands', 'controller' => BrandController::class], function () {
+    Route::get('/', 'brands')->name('brands.index');
+    Route::get('details/{id}', 'details')->name('brands.details');
+});
+
 Auth::routes();
 
 /*----- admin -----*/
