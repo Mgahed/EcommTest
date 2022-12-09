@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,13 @@ Route::group(['prefix' => 'brands', 'controller' => BrandController::class], fun
 Route::group(['prefix' => 'products', 'controller' => ProductController::class], function () {
     Route::get('/', 'products')->name('products.index');
     Route::get('details/{id}', 'details')->name('products.details');
+});
+
+Route::group(['prefix' => 'cart', 'controller' => CartController::class, 'middleware' => ['auth']], function () {
+    Route::get('/', 'cart')->name('cart.index');
+    Route::get('add/{id}', 'add')->name('cart.add');
+    Route::get('remove/{id}', 'remove')->name('cart.remove');
+    Route::get('update/{id}', 'update')->name('cart.update');
 });
 
 Auth::routes();

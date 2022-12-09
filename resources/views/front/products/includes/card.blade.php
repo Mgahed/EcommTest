@@ -5,7 +5,7 @@
             <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                     <li class="list-inline-item m-0 p-0">
-                        <a class="btn btn-sm btn-dark" href="cart.html">Add to cart</a>
+                        <a class="btn btn-sm btn-dark" href="{{route('cart.add',$product->id)}}">Add to cart</a>
                     </li>
                     <li class="list-inline-item me-0">
                         <a class="btn btn-sm btn-outline-dark" href="{{route('products.details',$product->id)}}">

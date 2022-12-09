@@ -1,10 +1,14 @@
 @php
-    // get user sum of cart
-    $cart = \App\Models\Cart::with('cartDetails')->where('user_id',Auth::user()->id)->get();
-    // get sum of quantity in cartDetails
-    $qtyCart = $cart->map(function($item){
-        return $item->cartDetails->sum('quantity');
-    })->sum();
+    if (Auth::user()){
+        // get user sum of cart
+        $cart = \App\Models\Cart::with('cartDetails')->where('user_id',Auth::user()->id)->get();
+        // get sum of quantity in cartDetails
+        $qtyCart = $cart->map(function($item){
+            return $item->cartDetails->sum('quantity');
+        })->sum();
+    }else{
+        $qtyCart = 0;
+    }
 @endphp
 <header class="header bg-white">
     <div class="container px-lg-3">
@@ -33,7 +37,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.html">
+                        <a class="nav-link" href="{{route('cart.index')}}">
                             <i class="fas fa-dolly-flatbed me-1 text-gray"></i>Cart<small
                                 class="text-gray fw-normal">({{$qtyCart}})</small>
                         </a>

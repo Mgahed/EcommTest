@@ -130,8 +130,28 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
+        let error = toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
         @if(Session::has('success'))
             toastr.success("{{Session::get('success')}}")
+        @endif
+        @if(Session::has('error'))
+            toastr.error("{{Session::get('error')}}")
         @endif
     </script>
     {{-- toastr --}}
@@ -160,6 +180,7 @@
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    @stack('scripts')
 </div>
 </body>
 </html>
