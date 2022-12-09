@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- PRODUCT DETAILS-->
+                <!-- BRAND DETAILS-->
                 <div class="col-lg-6">
                     <ul class="list-inline mb-2 text-sm">
                         <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>

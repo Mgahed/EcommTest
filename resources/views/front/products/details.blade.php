@@ -176,17 +176,7 @@
             <div class="row">
                 @foreach($relatedProducts as $relatedProduct)
                     <!-- PRODUCT-->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product text-center skel-loader">
-                            <div class="d-block mb-3 position-relative"><a class="d-block" href="{{route('products.details',$relatedProduct->id)}}"><img
-                                        class="img-fluid w-100" src="https://placeimg.com/640/480/animals" alt="{{$relatedProduct->Title}}"></a>
-                                <div class="product-overlay">
-                                </div>
-                            </div>
-                            <h6><a class="reset-anchor" href="{{route('products.details',$relatedProduct->id)}}">{{$relatedProduct->Title}}</a></h6>
-                            <p class="small text-muted">${{$relatedProduct->Price}}</p>
-                        </div>
-                    </div>
+                    @include('front.products.includes.card', ['product' => $relatedProduct])
                 @endforeach
             </div>
         </div>

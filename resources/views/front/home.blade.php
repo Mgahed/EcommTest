@@ -23,33 +23,7 @@
         <div class="row">
             @foreach($products as $product)
                 <!-- PRODUCT-->
-                <div class="col-xl-3 col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                        <div class="position-relative mb-3">
-                            <div class="badge text-white bg-"></div>
-                            <a class="d-block" href="detail.html"><img class="img-fluid w-100"
-                                                                       src="https://placeimg.com/40/30/nature"
-                                                                       alt="{{$product->Title}}"></a>
-                            <div class="product-overlay">
-                                <ul class="mb-0 list-inline">
-                                    <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark"
-                                                                            href="#"><i class="far fa-heart"></i></a>
-                                    </li>
-                                    <li class="list-inline-item m-0 p-0">
-                                        <a class="btn btn-sm btn-dark" href="cart.html">Add to cart</a>
-                                    </li>
-                                    <li class="list-inline-item me-0">
-                                        <a class="btn btn-sm btn-outline-dark" href="#">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h6><a class="reset-anchor" href="detail.html">{{$product->Title}}</a></h6>
-                        <p class="small text-muted">{{$product->Price}}</p>
-                    </div>
-                </div>
+                @include('front.products.includes.card', ['product' => $product])
             @endforeach
             <div class="text-center">
                 {{$products->appends(['brands' => $brands->currentPage()])->links()}}
@@ -72,26 +46,7 @@
         <div class="row">
             @foreach($brands as $brand)
                 <!-- BRANDS -->
-                <div class="col-xl-3 col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                        <div class="position-relative mb-3">
-                            <div class="badge text-white bg-"></div>
-                            <a class="d-block" href="{{route('brands.details',$brand->id)}}"><img class="img-fluid w-100"
-                                                                       src="https://placeimg.com/40/30"
-                                                                       alt="{{$brand->name}}"></a>
-                            <div class="product-overlay">
-                                <ul class="mb-0 list-inline">
-                                    <li class="list-inline-item me-0">
-                                        <a class="btn btn-sm btn-outline-dark" href="#">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h6><a class="reset-anchor" href="{{route('brands.details',$brand->id)}}">{{$brand->name}}</a></h6>
-                    </div>
-                </div>
+                @include('front.brands.includes.card', ['brand' => $brand])
             @endforeach
             <div class="text-center">
                 {{ $brands->appends(['products'=> $products->currentPage()])->links() }}
