@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Brand;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BrandSeeder extends Seeder
+class OrderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +17,10 @@ class BrandSeeder extends Seeder
     public function run()
     {
         $data = [];
-        for ($i = 0; $i < 100; $i++) {
-            $data[] = Brand::factory()->definition();
-            foreach (array_chunk($data, 10) as $brands) {
-                Brand::insert($brands);
+        for ($i = 0; $i < 1000; $i++) {
+            $data[] = Order::factory()->definition();
+            foreach (array_chunk($data, 500) as $orders) {
+                Order::insert($orders);
             }
         }
     }

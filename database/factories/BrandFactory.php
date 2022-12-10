@@ -18,6 +18,8 @@ class BrandFactory extends Factory
     {
         return [
             'name' => fake()->company(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

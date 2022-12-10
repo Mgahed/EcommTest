@@ -62,6 +62,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end end-0" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-md-end text-start" href="{{ route('orders.index') }}">
+                                    {{ __('Orders') }}
+                                </a>
+
                                 <a class="dropdown-item text-md-end text-start" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

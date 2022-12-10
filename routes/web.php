@@ -3,8 +3,10 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +37,16 @@ Route::group(['prefix' => 'cart', 'controller' => CartController::class, 'middle
     Route::get('add/{id}', 'add')->name('cart.add');
     Route::get('remove/{id}', 'remove')->name('cart.remove');
     Route::get('update/{id}', 'update')->name('cart.update');
+});
+
+Route::group(['prefix' => 'checkout', 'controller' => OrderController::class, 'middleware' => ['auth']], function () {
+    Route::get('/', 'checkout')->name('checkout.index');
+    Route::post('store', 'store')->name('checkout.store');
+});
+
+Route::group(['prefix' => 'orders', 'controller' => OrderController::class, 'middleware' => ['auth']], function () {
+    Route::get('/', 'orders')->name('orders.index');
+    Route::get('details/{id}', 'details')->name('orders.details');
 });
 
 Auth::routes();

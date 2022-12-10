@@ -24,6 +24,8 @@ class ProductFactory extends Factory
             'Details' => $this->faker->paragraph(3),
             'Price' => $this->faker->randomFloat(2, 10, 1000),
             'brand_id' => $this->faker->randomElement($brands),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
