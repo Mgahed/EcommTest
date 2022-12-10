@@ -27,6 +27,6 @@ php artisan db:seed
 ```Client: john.doe@example.com```
 ```Password: password```
 
-## Demo:
+## ERD:
 
-[See Live Demo](https://ecomm.mrtechnawy.com/)
+<img src="https://raw.githubusercontent.com/Mgahed/EcommTest/master/public/ERD.png" alt="ERD" />
