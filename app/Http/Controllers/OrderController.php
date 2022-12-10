@@ -2,13 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\OrderDataTable;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use Cache;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function index(OrderDataTable $dataTable)
+    {
+//        return $dataTable->render('admin.orders.index');
+        $orders = Order::latest()->paginate(20);
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function adminOrderDetails($id)
+    {
+        $order = Order::with('orderDetails.product')->findOrFail($id);
+//        return $order;
+        $subtotal = 0;
+        foreach ($order->orderDetails as $orderDetail) {
+            $subtotal += $orderDetail->unit_price * $orderDetail->quantity;
+        }
+        return view('admin.orders.details', compact('order', 'subtotal'));
+    }
+
+    public function updateStatus($id, $status)
+    {
+        $order = Order::findOrFail($id);
+        $order->update(['status' => $status]);
+        return redirect()->back()->with('success', 'Order status updated successfully');
+    }
+
+
     public function checkout()
     {
         $carts = Cart::with('cartDetails.product')->where('user_id', auth()->user()->id)->get();
@@ -50,14 +78,14 @@ class OrderController extends Controller
 
     public function orders()
     {
-        $orders = Order::with('orderDetails.product')->where('user_id', auth()->user()->id)->paginate(20); // todo make latest
+        $orders = Order::latest()->with('orderDetails.product')->where('user_id', auth()->user()->id)->paginate(20); // todo make latest
 //        return $orders[0];
         return view('front.orders.orders', compact('orders'));
     }
 
     public function details($id)
     {
-        $order = Order::with('orderDetails.product')->where('user_id',auth()->user()->id)->findOrFail($id);
+        $order = Order::with('orderDetails.product')->where('user_id', auth()->user()->id)->findOrFail($id);
 //        return $order;
         $subtotal = 0;
         foreach ($order->orderDetails as $orderDetail) {

@@ -1,11 +1,38 @@
-@extends('layouts.front.front')
-@section('content')
-    <section class="py-5">
-        <h2 class="h5 text-uppercase mb-4">Invoice</h2>
-        <div class="col-lg-12 mb-4 mb-lg-0">
-            <!-- CART TABLE-->
-            <div class="table-responsive mb-4">
-                <table class="table text-nowrap">
+@php
+    // get all status keys from config
+    $status = array_keys(config('global.ORDER.STATUS'));
+@endphp
+@extends('layouts.admin.admin')
+@section('admin')
+    @include('admin.alert.alert')
+
+    <div class="content-header">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="page-title">Order Details</h3>
+                <span class="badge badge-warning">{{config('global.ORDER.STATUS.'.$order->status)}}</span>
+            </div>
+            <div class="ml-auto">
+                <div class="btn-group">
+                    <button class="btn btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change Status</button>
+                    <div class="dropdown-menu">
+                        @foreach($status as $key)
+                            @if($key !== $order->status)
+                                <a class="dropdown-item" href="{{route('admin.orders.update', [$order->id, $key])}}">
+                                    {{config('global.ORDER.STATUS.'.$key)}}
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="box">
+            <div class="box-body">
+                <table class="table text-nowrap table-striped">
                     <thead class="bg-light">
                     <tr>
                         <th class="border-0 p-3" scope="col"><strong
@@ -27,13 +54,13 @@
                             <th class="ps-0 py-3 border-light" scope="row">
                                 <div class="d-flex align-items-center">
                                     <a class="reset-anchor d-block animsition-link"
-                                       href="{{route('products.details',$details->product->id)}}">
+                                       href="{{route('admin.products.edit',$details->product->id)}}">
                                         <img src="https://placeimg.com/640/480/animals"
                                              alt="{{$details->product->Title}}" width="70"/>
                                     </a>
-                                    <div class="ms-3"><strong class="h6">
+                                    <div class="ml-3"><strong class="h6">
                                             <a class="reset-anchor animsition-link"
-                                               href="{{route('products.details',$details->product->id)}}">
+                                               href="{{route('admin.products.edit',$details->product->id)}}">
                                                 {{$details->product->Title}}
                                             </a>
                                         </strong></div>
@@ -65,4 +92,10 @@
             </div>
         </div>
     </section>
+    @push('bottom-scripts')
+        <script src="{{asset('assets/vendor_components/ckeditor/ckeditor.js')}}"></script>
+        <script src="{{asset('dashboard/js/pages/editor.js')}}"></script>
+        <script src="{{asset('assets/vendor_components/select2/dist/js/select2.full.js')}}"></script>
+        <script src="{{asset('dashboard/js/pages/advanced-form-element.js')}}"></script>
+    @endpush
 @endsection

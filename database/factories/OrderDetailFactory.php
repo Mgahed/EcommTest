@@ -26,7 +26,7 @@ class OrderDetailFactory extends Factory
             'quantity' => $this->faker->numberBetween(1, 10),
             'discount' => 0,
             // random from 1 to 500000
-            'order_id' => $this->faker->numberBetween(1, 500500),
+            'order_id' => 1,
 //            'order_id' => $this->faker->randomElement($orders),
             'product_id' => $this->faker->randomElement($products),
             'created_at' => now(),

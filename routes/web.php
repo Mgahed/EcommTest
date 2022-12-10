@@ -81,4 +81,11 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin']], function () {
         Route::get('/update-role/{id}/{role}', 'updateRole')->name('admin.users.update');
         Route::get('/delete/{id}', 'delete')->name('admin.users.delete');
     });
+
+    // orders
+    Route::group(['prefix' => 'orders', 'controller' => OrderController::class], function () {
+        Route::get('/', 'index')->name('admin.orders.index');
+        Route::get('/details/{id}', 'adminOrderDetails')->name('admin.orders.details');
+        Route::get('/update-status/{id}/{status}', 'updateStatus')->name('admin.orders.update');
+    });
 });
